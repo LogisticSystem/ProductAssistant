@@ -10,15 +10,18 @@ PODS:
   - RMQClient (0.10.0):
     - CocoaAsyncSocket (~> 7.4.0)
     - JKVValue
+  - Starscream (3.0.4)
 
 DEPENDENCIES:
   - RMQClient
+  - Starscream
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   JKVValue: d7941071b1cf9ba35c194fd40bcf4c4d9b5462e9
   RMQClient: e9bfea2d08f151b6b12df82ad115c78bd8de2106
+  Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
 
-PODFILE CHECKSUM: 22fe8d3b2a4fd0cea48fd5322cda16622590595a
+PODFILE CHECKSUM: 556767cc713737437cbde43bbb6e896a06c9f0d4
 
 COCOAPODS: 1.4.0
