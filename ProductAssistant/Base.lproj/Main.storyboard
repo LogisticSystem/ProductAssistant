@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Main Table View Controller-->
         <scene sceneID="Ucp-VH-yob">
             <objects>
-                <tableViewController id="KFK-bP-AJh" sceneMemberID="viewController">
+                <tableViewController id="KFK-bP-AJh" customClass="MainTableViewController" customModule="ProductAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="bIk-Er-2Vn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                         <sections>
                             <tableViewSection headerTitle="Автоматическая генерация" id="w5z-dg-PKY">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4zI-0I-Ini">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="4zI-0I-Ini">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4zI-0I-Ini" id="jmu-01-BPj">
@@ -36,6 +36,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d6T-Au-E7q">
                                                     <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="stateSwitchValueChanged" destination="KFK-bP-AJh" eventType="valueChanged" id="Ucs-Tn-SKh"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -47,7 +50,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Fth-i9-In6">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Fth-i9-In6">
                                         <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fth-i9-In6" id="SkJ-gc-4kd">
@@ -62,6 +65,9 @@
                                                 </label>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="c0e-sp-Ggt">
                                                     <rect key="frame" x="265" y="7" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="intervalStepperValueChanged" destination="KFK-bP-AJh" eventType="valueChanged" id="dLg-pO-QPM"/>
+                                                    </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nv-jY-SJa">
                                                     <rect key="frame" x="232" y="11" width="18" height="20.5"/>
@@ -81,7 +87,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3iR-Td-yT7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="3iR-Td-yT7">
                                         <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3iR-Td-yT7" id="8b4-ag-ZOt">
@@ -96,6 +102,9 @@
                                                 </label>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="scU-uQ-zUg">
                                                     <rect key="frame" x="265" y="7" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="countStepperValueChanged" destination="KFK-bP-AJh" eventType="valueChanged" id="qpo-4p-Gny"/>
+                                                    </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cga-Mb-wvc">
                                                     <rect key="frame" x="242" y="11.5" width="8" height="20.5"/>
@@ -119,7 +128,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Ручное управление" id="cVj-c1-GTs">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="VqD-26-lih">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="VqD-26-lih">
                                         <rect key="frame" x="0.0" y="243.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VqD-26-lih" id="tjb-YV-ApX">
@@ -129,6 +138,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Hd-JO-fK9">
                                                     <rect key="frame" x="157" y="7" width="60" height="30"/>
                                                     <state key="normal" title="Создать"/>
+                                                    <connections>
+                                                        <action selector="createButtonTapped" destination="KFK-bP-AJh" eventType="touchUpInside" id="YEh-Lo-UzL"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -146,21 +158,29 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="NOS-0o-pak">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="navigationbar_settings" id="eyl-0t-hdC">
+                        <barButtonItem key="rightBarButtonItem" image="navigationbar_settings" id="eyl-0t-hdC">
                             <connections>
                                 <segue destination="lcI-dm-Dlh" kind="show" id="PKR-sw-McY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="countStepper" destination="scU-uQ-zUg" id="Z6F-np-UBT"/>
+                        <outlet property="countValueLabel" destination="cga-Mb-wvc" id="qVh-xx-ccN"/>
+                        <outlet property="createButton" destination="7Hd-JO-fK9" id="4Gy-WG-4cO"/>
+                        <outlet property="intervalStepper" destination="c0e-sp-Ggt" id="jDK-6l-iHR"/>
+                        <outlet property="intervalValueLabel" destination="0Nv-jY-SJa" id="Nst-MS-VXU"/>
+                        <outlet property="stateSwitch" destination="d6T-Au-E7q" id="eLj-hA-QJh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubt-ss-pWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="480.80000000000001" y="133.5832083958021"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Settings Table View Controller-->
         <scene sceneID="xHZ-xp-eru">
             <objects>
-                <tableViewController id="lcI-dm-Dlh" sceneMemberID="viewController">
+                <tableViewController id="lcI-dm-Dlh" customClass="SettingsTableViewController" customModule="ProductAssistant" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Pgf-f0-Uyz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,7 +190,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7o-ip-JTy">
-                                    <rect key="frame" x="101.5" y="11" width="172.5" height="72"/>
+                                    <rect key="frame" x="16" y="11" width="343" height="72"/>
                                     <string key="text">Выполнил студент
 РЭУ им. Г. В. Плеханова
 группы ДКО-141б
@@ -182,17 +202,16 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="T7o-ip-JTy" firstAttribute="centerX" secondItem="Jmn-X3-gJ9" secondAttribute="centerX" id="8Kn-YM-HV6"/>
                                 <constraint firstItem="T7o-ip-JTy" firstAttribute="top" secondItem="Jmn-X3-gJ9" secondAttribute="top" constant="11" id="ZbJ-Ka-2Km"/>
-                                <constraint firstItem="T7o-ip-JTy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jmn-X3-gJ9" secondAttribute="leading" constant="16" id="mbc-Gi-V4v"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T7o-ip-JTy" secondAttribute="trailing" constant="16" id="rUJ-43-KuT"/>
+                                <constraint firstItem="T7o-ip-JTy" firstAttribute="leading" secondItem="Jmn-X3-gJ9" secondAttribute="leading" constant="16" id="mbc-Gi-V4v"/>
+                                <constraint firstAttribute="trailing" secondItem="T7o-ip-JTy" secondAttribute="trailing" constant="16" id="rUJ-43-KuT"/>
                                 <constraint firstAttribute="bottom" secondItem="T7o-ip-JTy" secondAttribute="bottom" constant="11" id="tac-z2-lY5"/>
                             </constraints>
                         </view>
                         <sections>
                             <tableViewSection headerTitle="Настройки" id="AOX-i4-dXq">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hfc-vA-aPY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="hfc-vA-aPY">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hfc-vA-aPY" id="y3q-iZ-LIX">
@@ -207,6 +226,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WaD-hd-zIp">
                                                     <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="logSwitchValueChanged" destination="lcI-dm-Dlh" eventType="valueChanged" id="4xK-gR-r6H"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -222,7 +244,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Модуль &quot;Товар&quot;" id="hzp-ks-FsZ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NHz-DM-P9s">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="NHz-DM-P9s">
                                         <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NHz-DM-P9s" id="roE-3S-HE0">
@@ -232,6 +254,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="26y-CV-sYB">
                                                     <rect key="frame" x="16" y="7" width="68" height="30"/>
                                                     <state key="normal" title="Очистить"/>
+                                                    <connections>
+                                                        <action selector="cleanProductButtonTapped" destination="lcI-dm-Dlh" eventType="touchUpInside" id="GIP-lk-ILF"/>
+                                                    </connections>
                                                 </button>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="esx-Qr-6YD">
                                                     <rect key="frame" x="339" y="11" width="20" height="20"/>
@@ -250,7 +275,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Модуль &quot;Склад&quot;" id="bSo-Oz-v6l">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Gfh-wG-8A5">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Gfh-wG-8A5">
                                         <rect key="frame" x="0.0" y="255.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gfh-wG-8A5" id="Sf7-AJ-5IE">
@@ -260,6 +285,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXd-vz-DcQ">
                                                     <rect key="frame" x="16" y="7" width="68" height="30"/>
                                                     <state key="normal" title="Очистить"/>
+                                                    <connections>
+                                                        <action selector="cleanStorageButtonTapped" destination="lcI-dm-Dlh" eventType="touchUpInside" id="1ND-IR-feu"/>
+                                                    </connections>
                                                 </button>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6mp-Cd-Lpn">
                                                     <rect key="frame" x="339" y="11" width="20" height="20"/>
@@ -283,6 +311,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="2Hb-CP-beJ"/>
+                    <connections>
+                        <outlet property="cleanProductActivityIndicatorView" destination="esx-Qr-6YD" id="jez-mu-Qve"/>
+                        <outlet property="cleanProductButton" destination="26y-CV-sYB" id="SXB-SP-FRM"/>
+                        <outlet property="cleanStorageActivityIndicatorView" destination="6mp-Cd-Lpn" id="h3w-2H-1E7"/>
+                        <outlet property="cleanStorageButton" destination="FXd-vz-DcQ" id="Vn8-HL-6rk"/>
+                        <outlet property="logSwitch" destination="WaD-hd-zIp" id="dnb-VG-3Z5"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJ3-tN-U8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
