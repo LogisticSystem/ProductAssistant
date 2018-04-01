@@ -3,4 +3,6 @@ use_frameworks!
 
 target 'ProductAssistant' do
 
+    pod 'RMQClient'
+
 end
