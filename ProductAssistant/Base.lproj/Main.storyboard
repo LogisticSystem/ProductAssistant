@@ -63,7 +63,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="c0e-sp-Ggt">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="c0e-sp-Ggt">
                                                     <rect key="frame" x="265" y="7" width="94" height="29"/>
                                                     <connections>
                                                         <action selector="intervalStepperValueChanged" destination="KFK-bP-AJh" eventType="valueChanged" id="dLg-pO-QPM"/>
@@ -100,7 +100,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="scU-uQ-zUg">
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="scU-uQ-zUg">
                                                     <rect key="frame" x="265" y="7" width="94" height="29"/>
                                                     <connections>
                                                         <action selector="countStepperValueChanged" destination="KFK-bP-AJh" eventType="valueChanged" id="qpo-4p-Gny"/>
@@ -136,16 +136,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Hd-JO-fK9">
-                                                    <rect key="frame" x="157" y="7" width="60" height="30"/>
+                                                    <rect key="frame" x="16" y="7" width="60" height="30"/>
                                                     <state key="normal" title="Создать"/>
                                                     <connections>
                                                         <action selector="createButtonTapped" destination="KFK-bP-AJh" eventType="touchUpInside" id="YEh-Lo-UzL"/>
                                                     </connections>
                                                 </button>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="oSa-r0-BUo">
+                                                    <rect key="frame" x="339" y="12" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7Hd-JO-fK9" firstAttribute="centerY" secondItem="tjb-YV-ApX" secondAttribute="centerY" id="3yP-pk-6Vg"/>
-                                                <constraint firstItem="7Hd-JO-fK9" firstAttribute="centerX" secondItem="tjb-YV-ApX" secondAttribute="centerX" id="eFP-Wv-Sby"/>
+                                                <constraint firstItem="7Hd-JO-fK9" firstAttribute="centerY" secondItem="tjb-YV-ApX" secondAttribute="centerY" id="1Rt-f0-PcI"/>
+                                                <constraint firstItem="oSa-r0-BUo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7Hd-JO-fK9" secondAttribute="trailing" constant="8" id="A6g-ti-BUb"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oSa-r0-BUo" secondAttribute="trailing" id="Let-0l-kYy"/>
+                                                <constraint firstItem="oSa-r0-BUo" firstAttribute="centerY" secondItem="tjb-YV-ApX" secondAttribute="centerY" id="R0Y-CV-LmL"/>
+                                                <constraint firstItem="7Hd-JO-fK9" firstAttribute="leading" secondItem="tjb-YV-ApX" secondAttribute="leadingMargin" id="sxk-FG-Mf4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -167,7 +173,8 @@
                     <connections>
                         <outlet property="countStepper" destination="scU-uQ-zUg" id="Z6F-np-UBT"/>
                         <outlet property="countValueLabel" destination="cga-Mb-wvc" id="qVh-xx-ccN"/>
-                        <outlet property="createButton" destination="7Hd-JO-fK9" id="4Gy-WG-4cO"/>
+                        <outlet property="createProductActivityIndicatorView" destination="oSa-r0-BUo" id="QGG-zD-tAq"/>
+                        <outlet property="createProductButton" destination="7Hd-JO-fK9" id="4Gy-WG-4cO"/>
                         <outlet property="intervalStepper" destination="c0e-sp-Ggt" id="jDK-6l-iHR"/>
                         <outlet property="intervalValueLabel" destination="0Nv-jY-SJa" id="Nst-MS-VXU"/>
                         <outlet property="stateSwitch" destination="d6T-Au-E7q" id="eLj-hA-QJh"/>

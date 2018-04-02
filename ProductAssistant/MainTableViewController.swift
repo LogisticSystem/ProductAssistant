@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 final class MainTableViewController: UITableViewController {
     
@@ -30,7 +31,26 @@ final class MainTableViewController: UITableViewController {
     
     /// Кнопка "Создать"
     @IBOutlet
-    private weak var createButton: UIButton!
+    private weak var createProductButton: UIButton!
+    /// Индикатор активности создания товара
+    @IBOutlet
+    private weak var createProductActivityIndicatorView: UIActivityIndicatorView! {
+        willSet {
+            newValue.hidesWhenStopped = true
+        }
+    }
+    
+    
+    // MARK: - Приватные свойства
+    
+    /// URL метода создания товара
+    private lazy var createProductUrl: URL = {
+        guard let url = URL(string: "\(API.baseUrl)/products/new") else { preconditionFailure() }
+        return url
+    }()
+    
+    /// Таймер
+    private weak var timer: Timer?
     
 }
 
@@ -84,7 +104,19 @@ private extension MainTableViewController {
     
     /// Изменено положение переключателя состояния
     @IBAction
-    func stateSwitchValueChanged() { }
+    func stateSwitchValueChanged() {
+        self.intervalStepper.isEnabled = !self.stateSwitch.isOn
+        self.intervalStepper.superview?.alpha = self.stateSwitch.isOn ? 0.6 : 1
+        
+        self.countStepper.isEnabled = !self.stateSwitch.isOn
+        self.countStepper.superview?.alpha = self.stateSwitch.isOn ? 0.6 : 1
+        
+        if self.stateSwitch.isOn {
+            startTimer()
+        } else {
+            stopTimer()
+        }
+    }
     
     /// Изменено значение итератора "Интервал"
     @IBAction
@@ -100,6 +132,45 @@ private extension MainTableViewController {
     
     /// Нажата кнопка "Создать"
     @IBAction
-    func createButtonTapped() { }
+    func createButtonTapped() {
+        createProduct()
+    }
+    
+}
+
+
+// MARK: - Приватные методы
+
+private extension MainTableViewController {
+    
+    /// Запуск таймера
+    func startTimer() {
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.interval), repeats: true) { timer in
+            guard timer.isValid else { return }
+            
+            DispatchQueue.concurrentPerform(iterations: self.count) { [weak timer] _ in
+                guard timer?.isValid ?? false else { return }
+                
+                Alamofire.request(self.createProductUrl, method: .get).resume()
+            }
+        }
+    }
+    
+    /// Остановка таймера
+    func stopTimer() {
+        self.timer?.invalidate()
+    }
+    
+    /// Создание товара
+    func createProduct() {
+        self.createProductButton.isEnabled = false
+        self.createProductActivityIndicatorView.startAnimating()
+        
+        Alamofire.request(self.createProductUrl, method: .get).response { [weak self] response in
+            self?.createProductButton.isEnabled = true
+            self?.createProductActivityIndicatorView.stopAnimating()
+        }
+    }
     
 }

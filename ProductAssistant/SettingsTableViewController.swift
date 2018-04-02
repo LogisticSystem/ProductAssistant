@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 final class SettingsTableViewController: UITableViewController {
     
@@ -23,7 +24,7 @@ final class SettingsTableViewController: UITableViewController {
     @IBOutlet
     private weak var cleanProductActivityIndicatorView: UIActivityIndicatorView! {
         willSet {
-            newValue.isHidden = true
+            newValue.hidesWhenStopped = true
         }
     }
     
@@ -34,8 +35,22 @@ final class SettingsTableViewController: UITableViewController {
     @IBOutlet
     private weak var cleanStorageActivityIndicatorView: UIActivityIndicatorView! {
         willSet {
-            newValue.isHidden = true
+            newValue.hidesWhenStopped = true
         }
+    }
+    
+}
+
+
+// MARK: - UIViewController
+
+extension SettingsTableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Отображение данных
+        self.logSwitch.setOn(Logger.shared.isSubscribed, animated: false)
     }
     
 }
@@ -58,14 +73,55 @@ private extension SettingsTableViewController {
     
     /// Изменено положение переключателя состояния активации логирования
     @IBAction
-    func logSwitchValueChanged() { }
+    func logSwitchValueChanged() {
+        if self.logSwitch.isOn {
+            Logger.shared.subscribe()
+        } else {
+            Logger.shared.unsubscribe()
+        }
+    }
     
     /// Нажата кнопка "Очистить товар"
     @IBAction
-    func cleanProductButtonTapped() { }
+    func cleanProductButtonTapped() {
+        cleanProduct()
+    }
     
     /// Нажата кнопка "Очистить склад"
     @IBAction
-    func cleanStorageButtonTapped() { }
+    func cleanStorageButtonTapped() {
+        cleanStorage()
+    }
+    
+}
+
+
+// MARK: - Приватные методы
+
+private extension SettingsTableViewController {
+    
+    /// Очистка товара
+    func cleanProduct() {
+        self.cleanProductButton.isEnabled = false
+        self.cleanProductActivityIndicatorView.startAnimating()
+        
+        guard let url = URL(string: "\(API.baseUrl)/products") else { return }
+        Alamofire.request(url, method: .put).response { [weak self] response in
+            self?.cleanProductButton.isEnabled = true
+            self?.cleanProductActivityIndicatorView.stopAnimating()
+        }
+    }
+    
+    /// Очистка склада
+    func cleanStorage() {
+        self.cleanStorageButton.isEnabled = false
+        self.cleanStorageActivityIndicatorView.startAnimating()
+        
+        guard let url = URL(string: "\(API.baseUrl)/storages") else { return }
+        Alamofire.request(url, method: .put).response { [weak self] response in
+            self?.cleanStorageButton.isEnabled = true
+            self?.cleanStorageActivityIndicatorView.stopAnimating()
+        }
+    }
     
 }

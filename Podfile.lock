@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.1)
   - CocoaAsyncSocket (7.4.3):
     - CocoaAsyncSocket/All (= 7.4.3)
   - CocoaAsyncSocket/All (7.4.3):
@@ -13,15 +14,17 @@ PODS:
   - Starscream (3.0.4)
 
 DEPENDENCIES:
+  - Alamofire
   - RMQClient
   - Starscream
 
 SPEC CHECKSUMS:
+  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
   JKVValue: d7941071b1cf9ba35c194fd40bcf4c4d9b5462e9
   RMQClient: e9bfea2d08f151b6b12df82ad115c78bd8de2106
   Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
 
-PODFILE CHECKSUM: 0ce20e6e88c0ff7df44f8e4ffc3f22005947cf16
+PODFILE CHECKSUM: 71bdbed7acf3c74bf4d695ad3a15da22fc52a679
 
 COCOAPODS: 1.4.0
