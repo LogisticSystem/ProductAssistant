@@ -28,6 +28,13 @@ final class Logger {
         self.webSocket.delegate = self
     }
     
+    
+    // MARK: - Деинициализация
+    
+    deinit {
+        self.webSocket.disconnect()
+    }
+    
 }
 
 
@@ -74,6 +81,7 @@ extension Logger: WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("websocketDidReceiveMessage \(text)")
+        Rabbit.shared.eatCarrot(text)
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
