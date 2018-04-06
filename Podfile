@@ -8,5 +8,6 @@ target 'ProductAssistant' do
     pod 'RMQClient'
     pod 'Starscream'
     pod 'Alamofire'
+    pod 'CocoaLumberjack/Swift'
 
 end
