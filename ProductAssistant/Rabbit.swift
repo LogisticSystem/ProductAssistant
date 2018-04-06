@@ -10,11 +10,6 @@ import RMQClient
 
 final class Rabbit {
     
-    // MARK: - Публичные свойства
-    
-    static var shared = Rabbit()
-    
-    
     // MARK: - Приватные свойства
     
     /// Соединение с RabbitMQ
@@ -25,7 +20,7 @@ final class Rabbit {
     
     // MARK: - Инициализация
     
-    private init() {
+    init() {
         let connection = RMQConnection(uri: "amqp://test:Zxvcasfd@51.144.119.126", delegate: RMQConnectionDelegateLogger())
         connection.start()
         
@@ -51,9 +46,8 @@ final class Rabbit {
 extension Rabbit {
     
     /// Съесть морковку
-    func eatCarrot(_ message: String) {
-        let messageData = message.data(using: .utf8)
-        self.exchange.publish(messageData)
+    func eatCarrot(_ message: Data) {
+        self.exchange.publish(message)
     }
     
 }
