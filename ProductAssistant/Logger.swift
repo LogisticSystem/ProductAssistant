@@ -84,11 +84,11 @@ private extension Logger {
     }
     
     /// Отправить сообщение
-    func sendData<T : Codable>(_ data: T) {
+    func sendData<T : Codable>(_ data: T, groupName: String) {
         let jsonEncoder = JSONEncoder()
         guard let data = try? jsonEncoder.encode(data) else { return }
         
-        let rabbit = Rabbit()
+        let rabbit = Rabbit(exchange: groupName)
         rabbit.eatCarrot(data)
     }
     
@@ -118,13 +118,13 @@ extension Logger: WebSocketDelegate {
                 let actionInfo = self.prepareAction(productsMessage.action)
                 if self.checkAction(actionInfo) {
                     productsMessage.action = actionInfo.first ?? ""
-                    self.sendData(productsMessage)
+                    self.sendData(productsMessage, groupName: "Products")
                 }
             } else if let storagesMessage = try? jsonDecoder.decode(StoragesMessage.self, from: data) {
                 let actionInfo = self.prepareAction(storagesMessage.action)
                 if self.checkAction(actionInfo) {
                     storagesMessage.action = actionInfo.first ?? ""
-                    self.sendData(storagesMessage)
+                    self.sendData(storagesMessage, groupName: "Storages")
                 }
             }
             

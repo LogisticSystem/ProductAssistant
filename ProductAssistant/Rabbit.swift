@@ -20,12 +20,12 @@ final class Rabbit {
     
     // MARK: - Инициализация
     
-    init() {
+    init(exchange: String) {
         let connection = RMQConnection(uri: "amqp://test:Zxvcasfd@51.144.119.126", delegate: RMQConnectionDelegateLogger())
         connection.start()
         
         let channel = connection.createChannel()
-        let exchange = channel.fanout("Storages")
+        let exchange = channel.fanout(exchange)
         
         self.connection = connection
         self.exchange = exchange

@@ -21,4 +21,15 @@ final class Product: Codable {
     /// Идентификатор владельца
     var ownerId: String?
     
+    
+    // MARK: - Инициализация
+    
+    init(id: String, source: String, destination: String, route: [String], ownerId: String?) {
+        self.id = id
+        self.source = source
+        self.destination = destination
+        self.route = route
+        self.ownerId = ownerId
+    }
+    
 }
