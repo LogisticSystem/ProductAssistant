@@ -114,17 +114,17 @@ extension Logger: WebSocketDelegate {
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         DispatchQueue.global().async {
             let jsonDecoder = JSONDecoder()
-            if let productsMessage = try? jsonDecoder.decode(ProductsMessage.self, from: data) {
-                let actionInfo = self.prepareAction(productsMessage.action)
-                if self.checkAction(actionInfo) {
-                    productsMessage.action = actionInfo.first ?? ""
-                    self.sendData(productsMessage, groupName: "Products")
-                }
-            } else if let storagesMessage = try? jsonDecoder.decode(StoragesMessage.self, from: data) {
+            if let storagesMessage = try? jsonDecoder.decode(StoragesMessage.self, from: data) {
                 let actionInfo = self.prepareAction(storagesMessage.action)
                 if self.checkAction(actionInfo) {
                     storagesMessage.action = actionInfo.first ?? ""
                     self.sendData(storagesMessage, groupName: "Storages")
+                }
+            } else if let productsMessage = try? jsonDecoder.decode(ProductsMessage.self, from: data) {
+                let actionInfo = self.prepareAction(productsMessage.action)
+                if self.checkAction(actionInfo) {
+                    productsMessage.action = actionInfo.first ?? ""
+                    self.sendData(productsMessage, groupName: "Products")
                 }
             }
             
