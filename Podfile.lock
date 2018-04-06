@@ -18,6 +18,14 @@ DEPENDENCIES:
   - RMQClient
   - Starscream
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - CocoaAsyncSocket
+    - JKVValue
+    - RMQClient
+    - Starscream
+
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   CocoaAsyncSocket: a18c75dca4b08723628a0bacca6e94803d90be91
@@ -27,4 +35,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 71bdbed7acf3c74bf4d695ad3a15da22fc52a679
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
