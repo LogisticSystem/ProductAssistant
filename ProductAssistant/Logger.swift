@@ -6,6 +6,7 @@
 //  Copyright © 2018 Ilya Khalyapin. All rights reserved.
 //
 
+import CocoaLumberjack
 import Starscream
 
 final class Logger {
@@ -99,15 +100,15 @@ private extension Logger {
 extension Logger: WebSocketDelegate {
     
     func websocketDidConnect(socket: WebSocketClient) {
-        print("websocketDidConnect")
+        DDLogInfo("websocketDidConnect")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("websocketDidDisconnect \(error?.localizedDescription ?? "")")
+        DDLogError("websocketDidDisconnect \(error?.localizedDescription ?? "")")
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("websocketDidReceiveMessage \(text)")
+        DDLogVerbose("websocketDidReceiveMessage \(text)")
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
@@ -128,7 +129,7 @@ extension Logger: WebSocketDelegate {
             }
             
             guard let string = String.init(data: data, encoding: .utf8) else { return }
-            print(string)
+            DDLogVerbose(string)
         }
     }
     

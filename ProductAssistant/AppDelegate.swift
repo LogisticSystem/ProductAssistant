@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CocoaLumberjack
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - UIApplicationDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        DDLog.add(DDTTYLogger.sharedInstance) // TTY = Xcode console
+        
+        let fileLogger: DDFileLogger = DDFileLogger() // File Logger
+        fileLogger.rollingFrequency = TimeInterval(60 * 60 * 24)
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        DDLog.add(fileLogger)
+        
+        // Path to Log file
+        print("Log: \(fileLogger.currentLogFileInfo.filePath)")
+        
         return true
     }
     

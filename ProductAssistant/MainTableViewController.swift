@@ -149,10 +149,12 @@ private extension MainTableViewController {
         self.timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(self.interval), repeats: true) { timer in
             guard timer.isValid else { return }
             
-            DispatchQueue.concurrentPerform(iterations: self.count) { [weak timer] _ in
-                guard timer?.isValid ?? false else { return }
-                
-                Alamofire.request(self.createProductUrl, method: .get).resume()
+            DispatchQueue.main.async {
+                DispatchQueue.concurrentPerform(iterations: self.count) { [weak timer] _ in
+                    guard timer?.isValid ?? false else { return }
+                    
+                    Alamofire.request(self.createProductUrl, method: .get).resume()
+                }
             }
         }
     }
